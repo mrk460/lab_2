@@ -1,0 +1,242 @@
+/* ==========================================================
+   Лабораторна робота №3, Частина 1: зовнішні стилі для index.html
+   Зміст:
+     1. Змінні
+     2. Базові стилі (селектори тегів)
+     3. Шапка (клас, Flexbox)
+     4. Макет сторінки (CSS Grid, ID-селектори)
+     5. Записи досвіду й освіти (клас, псевдокласи)
+     6. Посилання (селектори атрибутів, псевдокласи)
+     7. Адаптивність (медіазапит)
+   ========================================================== */
+
+/* ---------- 1. Змінні ---------- */
+:root {
+  --ink: #16232b;
+  --paper: #eaeff2;
+  --panel: #ffffff;
+  --line: #c9d3d9;
+  --muted: #51626d;
+  --accent: #0b6e8a;
+  --signal: #d9480f;
+  --radius: 6px;
+  --gap: 24px;
+}
+
+/* ---------- 2. Базові стилі: селектори тегів ---------- */
+/* box-sizing: padding і border входять у задану ширину елемента */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+}
+
+body {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  color: var(--ink);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 12px;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.2;
+}
+
+h2 {
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--line);
+  font-size: 1.25rem;
+}
+
+h3 {
+  font-size: 1.05rem;
+}
+
+p {
+  margin: 0 0 12px;
+  max-width: 68ch;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* ---------- 3. Шапка: клас + Flexbox ---------- */
+.hero {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 8px 24px;
+  margin-bottom: var(--gap);
+  padding: 32px;
+  border-left: 8px solid var(--signal);
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: 2.25rem;
+}
+
+.role {
+  margin: 0;
+  color: #b9c7d0;
+  font-size: 1.125rem;
+}
+
+/* ---------- 4. Макет сторінки: CSS Grid + ID-селектори ---------- */
+main {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  grid-template-areas:
+    "side exp"
+    "side edu";
+  gap: var(--gap);
+  align-items: start;
+}
+
+#contacts {
+  grid-area: side;
+}
+
+#experience {
+  grid-area: exp;
+}
+
+#education {
+  grid-area: edu;
+}
+
+#contacts,
+#experience,
+#education {
+  padding: 24px 28px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+
+.contact-list li {
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 5. Записи досвіду й освіти ---------- */
+.entry {
+  margin: 0 0 16px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.entry p {
+  margin-bottom: 8px;
+}
+
+.duties {
+  padding-left: 20px;
+  list-style: disc;
+}
+
+.duties li {
+  margin-bottom: 6px;
+}
+
+/* Псевдоклас 1: :last-child, прибираємо зайвий відступ внизу */
+.entry:last-child,
+.duties li:last-child {
+  margin-bottom: 0;
+}
+
+/* Псевдоклас 2: :hover, підсвічування запису при наведенні */
+.entry:hover {
+  background: var(--paper);
+}
+
+.site-footer {
+  margin-top: var(--gap);
+  color: var(--muted);
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+.site-footer p {
+  margin: 0 auto;
+}
+
+/* ---------- 6. Посилання ---------- */
+a {
+  color: var(--accent);
+}
+
+/* Селектори атрибутів */
+a[href^="mailto:"],
+a[href^="tel:"] {
+  font-weight: 600;
+}
+
+a[href^="https://"] {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+a[target="_blank"]::after {
+  content: " ↗";
+}
+
+/* Псевдокласи для посилань */
+a:hover {
+  color: var(--signal);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--signal);
+  outline-offset: 2px;
+}
+
+/* ---------- 7. Адаптивність: медіазапит ---------- */
+/* На вузькому екрані: одна колонка, шапка стовпчиком */
+@media (max-width: 720px) {
+  body {
+    padding: 16px 12px;
+  }
+
+  .hero {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 24px 20px;
+  }
+
+  .hero h1 {
+    font-size: 1.75rem;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "side"
+      "exp"
+      "edu";
+  }
+
+  #contacts,
+  #experience,
+  #education {
+    padding: 20px 16px;
+  }
+}
