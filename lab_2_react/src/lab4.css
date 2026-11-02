@@ -1,0 +1,26 @@
+/* Додайте до src/index.css або src/App.css */
+body {
+  --bg: #f6f7f9; --surface: #fff; --text: #1c2330;
+  --muted: #5b6678; --accent: #1b5fd1; --border: #d9dee7;
+  background: var(--bg);
+  color: var(--text);
+  transition: background .25s, color .25s;
+}
+body.dark-mode {
+  --bg: #12161d; --surface: #1a2029; --text: #e6eaf1;
+  --muted: #9aa5b8; --accent: #6ea8ff; --border: #2c3544;
+}
+
+.review { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; margin-bottom: .75rem; }
+.review h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+.review .author { color: var(--muted); font-size: .9rem; margin: 0 0 .5rem; }
+
+.footer { border-top: 1px solid var(--border); color: var(--muted); font-size: .9rem; padding: 1rem; word-break: break-word; }
+
+.theme-toggle { padding: .5rem 1rem; border: 1px solid var(--border); border-radius: 6px; background: var(--surface); color: var(--text); cursor: pointer; }
+
+.modal { position: fixed; inset: 0; background: rgba(0,0,0,.55); display: flex; align-items: center; justify-content: center; padding: 1rem; z-index: 100; }
+.modal-content { background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: 10px; padding: 1.5rem; width: 100%; max-width: 440px; }
+.modal-content label { display: block; margin-bottom: .75rem; }
+.modal-content input, .modal-content textarea { display: block; width: 100%; margin-top: .25rem; padding: .5rem; font: inherit; border: 1px solid var(--border); border-radius: 6px; background: var(--bg); color: var(--text); }
+.modal-actions { display: flex; gap: .5rem; justify-content: flex-end; }

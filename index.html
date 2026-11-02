@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="uk" data-theme="light">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Резюме Савчака Маркіяна — Security Analyst">
   <title>Резюме — Савчак Маркіян</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
   <header>
-    <h1>Савчак Маркіян</h1>
-    <p>Security Analyst</p>
+    <div>
+      <h1>Савчак Маркіян</h1>
+      <p>Security Analyst</p>
+    </div>
+    <button id="theme-toggle" type="button" aria-label="Перемкнути тему">🌙 Нічна тема</button>
   </header>
 
   <main>
@@ -50,11 +53,46 @@
         <p>НУЛП (Національний університет «Львівська політехніка»), <time datetime="2021">2021</time></p>
       </article>
     </section>
+
+    <section id="reviews">
+      <h2>Відгуки колишніх роботодавців</h2>
+      <p id="reviews-status">Завантаження відгуків…</p>
+      <div id="reviews-list"></div>
+    </section>
   </main>
 
   <footer>
     <p>&copy; 2026 Савчак Маркіян</p>
+    <h2>Інформація про систему (localStorage)</h2>
+    <ul id="storage-info"></ul>
   </footer>
 
+  <!-- Модальне вікно зворотного зв'язку (з'являється через 1 хвилину) -->
+  <div id="feedback-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="feedback-title" hidden>
+    <div class="modal-content">
+      <h2 id="feedback-title">Зворотний зв'язок</h2>
+      <!-- Замініть YOUR_FORM_ID на endpoint зі свого акаунта Formspree -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+        <label>Ім'я
+          <input type="text" name="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" required>
+        </label>
+        <label>Номер телефону
+          <input type="tel" name="phone" required>
+        </label>
+        <label>Повідомлення
+          <textarea name="message" rows="4" required></textarea>
+        </label>
+        <div class="modal-actions">
+          <button type="submit">Надіслати</button>
+          <button type="button" id="modal-close">Закрити</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/script.js"></script>
 </body>
 </html>
